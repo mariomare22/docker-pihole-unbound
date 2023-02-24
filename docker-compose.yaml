@@ -9,7 +9,7 @@ services:
     ports:
       - 53:53/tcp
       - 53:53/udp
-      - ${PIHOLE_WEBPORT}:80/tcp #Allows use of different port to access pihole web interface when other docker containers use port 80
+      - ${PIHOLE_WEBPORT:-80}:80/tcp #Allows use of different port to access pihole web interface when other docker containers use port 80
 
     environment:
       - PUID=1000
@@ -25,8 +25,8 @@ services:
       - DNSSEC=${DNSSEC}
       - DNSMASQ_LISTENING=single
     volumes:
-      - ${pwd}/config/etc_pihole-unbound:/etc/pihole:rw
-      - ${pwd}/config/pihole/etc_pihole_dnsmasq-unbound:/etc/dnsmasq.d:rw
-      - ${pwd}/config/pihole/etc_unbound:/etc/unbound/unbound.conf.d/:rw
-      - ${pwd}/config/pihole/hosts:/etc/hosts:rw
+      - /home/mario/config/pihole/etc_pihole-unbound:/etc/pihole:rw
+      - /home/mario/config/pihole/etc_pihole_dnsmasq-unbound:/etc/dnsmasq.d:rw
+      - /home/mario/config/pihole/etc_unbound:/etc/unbound/unbound.conf.d/:rw
+      - /home/mario/config/pihole/hosts:/etc/hosts:rw
     restart: unless-stopped
