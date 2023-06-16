@@ -41,12 +41,8 @@ PIHOLE_WEBPORT=80
 WEBTHEME=default-light
 ```
 
-
-
 ### Running the stack
 
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
-
-> If using Portainer, just paste the `docker-compose.yaml` contents into the stack config and add your *environment variables* directly in the UI.
