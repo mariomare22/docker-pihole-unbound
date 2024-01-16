@@ -12,7 +12,7 @@ RUN wget https://www.internic.net/domain/named.root -qO- | sudo tee /var/lib/unb
 EXPOSE 80/tcp
 EXPOSE 80/udp
 EXPOSE 53/tcp
-EXPOSE 53/udb
+EXPOSE 53/udp
 
 ENTRYPOINT ./s6-init
 
