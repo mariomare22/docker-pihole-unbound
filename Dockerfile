@@ -1,6 +1,6 @@
 #ARG PIHOLE_VERSION
 FROM pihole/pihole:2024.01.0
-RUN apt update && apt install -y unbound wget
+RUN apt-get update && apt-get install -y unbound wget
 
 COPY pihole-unbound/lighttpd-external.conf /etc/lighttpd/external.conf 
 COPY pihole-unbound/unbound-pihole.conf /etc/unbound/unbound.conf.d/pi-hole.conf
