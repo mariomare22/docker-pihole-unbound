@@ -9,11 +9,6 @@ RUN mkdir -p /etc/services.d/unbound
 COPY pihole-unbound/unbound-run /etc/services.d/unbound/run
 RUN wget https://www.internic.net/domain/named.root -qO- | sudo tee /var/lib/unbound/root.hints
 
-EXPOSE 80/tcp
-EXPOSE 80/udp
-EXPOSE 53/tcp
-EXPOSE 53/udp
-
 ENTRYPOINT ./s6-init
 
 #HEALTHCHECK CMD dig @127.0.0.1 pi.hole || exit 1
