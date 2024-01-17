@@ -11,4 +11,3 @@ RUN wget https://www.internic.net/domain/named.root -qO- | sudo tee /var/lib/unb
 
 ENTRYPOINT ./s6-init
 
-##HEALTHCHECK CMD dig @127.0.0.1 pi.hole || exit 1
