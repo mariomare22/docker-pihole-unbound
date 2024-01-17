@@ -9,4 +9,5 @@ RUN mkdir -p /etc/services.d/unbound
 COPY pihole-unbound/unbound-run /etc/services.d/unbound/run
 RUN wget https://www.internic.net/domain/named.root -qO- | sudo tee /var/lib/unbound/root.hints
 
+
 ENTRYPOINT ./s6-init
