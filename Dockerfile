@@ -13,8 +13,12 @@ COPY pihole-unbound/99-edns.conf /etc/dnsmasq.d/99-edns.conf
 RUN mkdir -p /etc/services.d/unbound
 COPY pihole-unbound/unbound-run /etc/services.d/unbound/run
 
+# Create the unbound directory and set permissions
+RUN mkdir -p /var/lib/unbound && \
+    chown pihole:pihole /var/lib/unbound
+
 # Download the root hints file for unbound
-RUN wget https://www.internic.net/domain/named.root -qO- > /var/lib/unbound/root.hints
+RUN wget https://www.internic.net/domain/named.root -qO /var/lib/unbound/root.hints
 
 # Set the entrypoint to the s6 initialization script
 ENTRYPOINT ["/s6-init"]
