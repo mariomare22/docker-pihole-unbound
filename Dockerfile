@@ -21,4 +21,4 @@ RUN mkdir -p /var/lib/unbound && \
 RUN wget https://www.internic.net/domain/named.root -qO /var/lib/unbound/root.hints
 
 # Set the entrypoint to the s6 initialization script
-ENTRYPOINT ["/s6-init"]
+ENTRYPOINT ["/init"]
