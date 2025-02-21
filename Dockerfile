@@ -1,13 +1,20 @@
-#ARG PIHOLE_VERSION
+# Use the new Alpine-based Pi-hole image
 FROM pihole/pihole:2025.02.1
-#RUN apk update && apk add -y unbound wget
 
-#COPY pihole-unbound/lighttpd-external.conf /etc/lighttpd/external.conf 
-#COPY pihole-unbound/unbound-pihole.conf /etc/unbound/unbound.conf.d/pi-hole.conf
-#COPY pihole-unbound/99-edns.conf /etc/dnsmasq.d/99-edns.conf
-#RUN mkdir -p /etc/services.d/unbound
-#COPY pihole-unbound/unbound-run /etc/services.d/unbound/run
-#RUN wget https://www.internic.net/domain/named.root -qO- | sudo tee /var/lib/unbound/root.hints
+# Update package list and install unbound and wget
+RUN apk update && apk add unbound wget
 
+# Copy configuration files
+COPY pihole-unbound/lighttpd-external.conf /etc/lighttpd/external.conf 
+COPY pihole-unbound/unbound-pihole.conf /etc/unbound/unbound.conf.d/pi-hole.conf
+COPY pihole-unbound/99-edns.conf /etc/dnsmasq.d/99-edns.conf
 
-ENTRYPOINT ./s6-init
+# Create the services directory and copy the run script
+RUN mkdir -p /etc/services.d/unbound
+COPY pihole-unbound/unbound-run /etc/services.d/unbound/run
+
+# Download the root hints file for unbound
+RUN wget https://www.internic.net/domain/named.root -qO- > /var/lib/unbound/root.hints
+
+# Set the entrypoint to the s6 initialization script
+ENTRYPOINT ["/s6-init"]
