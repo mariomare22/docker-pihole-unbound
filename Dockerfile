@@ -1,5 +1,5 @@
 #ARG PIHOLE_VERSION
-FROM pihole/pihole:2025.02.1
+FROM pihole/pihole:2025.02.3
 #RUN apk update && apk add -y unbound wget
 
 #COPY pihole-unbound/lighttpd-external.conf /etc/lighttpd/external.conf 
