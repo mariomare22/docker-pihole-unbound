@@ -1,5 +1,5 @@
 # Use the new Alpine-based Pi-hole image
-FROM pihole/pihole:2025.02.4
+FROM pihole/pihole:2025.02.6
 
 # Update package list and install unbound and wget
 RUN apk update && apk add unbound wget
