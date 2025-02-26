@@ -10,6 +10,7 @@ services:
       - 53:53/tcp
       - 53:53/udp
       - ${PIHOLE_WEBPORT:-80}:80/tcp #Allows use of different port to access pihole web interface when other docker containers use port 80
+      - 443:443
 
     environment:
       - PUID=1000
